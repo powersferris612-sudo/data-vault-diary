@@ -9,8 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SavingsRouteImport } from './routes/savings'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as IncomeRouteImport } from './routes/income'
+import { Route as GoalsRouteImport } from './routes/goals'
+import { Route as ExpensesRouteImport } from './routes/expenses'
+import { Route as BudgetRouteImport } from './routes/budget'
+import { Route as AllMonthsRouteImport } from './routes/all-months'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SavingsRoute = SavingsRouteImport.update({
+  id: '/savings',
+  path: '/savings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncomeRoute = IncomeRouteImport.update({
+  id: '/income',
+  path: '/income',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GoalsRoute = GoalsRouteImport.update({
+  id: '/goals',
+  path: '/goals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpensesRoute = ExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BudgetRoute = BudgetRouteImport.update({
+  id: '/budget',
+  path: '/budget',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AllMonthsRoute = AllMonthsRouteImport.update({
+  id: '/all-months',
+  path: '/all-months',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +67,144 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/all-months': typeof AllMonthsRoute
+  '/budget': typeof BudgetRoute
+  '/expenses': typeof ExpensesRoute
+  '/goals': typeof GoalsRoute
+  '/income': typeof IncomeRoute
+  '/reports': typeof ReportsRoute
+  '/savings': typeof SavingsRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/all-months': typeof AllMonthsRoute
+  '/budget': typeof BudgetRoute
+  '/expenses': typeof ExpensesRoute
+  '/goals': typeof GoalsRoute
+  '/income': typeof IncomeRoute
+  '/reports': typeof ReportsRoute
+  '/savings': typeof SavingsRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/all-months': typeof AllMonthsRoute
+  '/budget': typeof BudgetRoute
+  '/expenses': typeof ExpensesRoute
+  '/goals': typeof GoalsRoute
+  '/income': typeof IncomeRoute
+  '/reports': typeof ReportsRoute
+  '/savings': typeof SavingsRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/all-months'
+    | '/budget'
+    | '/expenses'
+    | '/goals'
+    | '/income'
+    | '/reports'
+    | '/savings'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/all-months'
+    | '/budget'
+    | '/expenses'
+    | '/goals'
+    | '/income'
+    | '/reports'
+    | '/savings'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/all-months'
+    | '/budget'
+    | '/expenses'
+    | '/goals'
+    | '/income'
+    | '/reports'
+    | '/savings'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AllMonthsRoute: typeof AllMonthsRoute
+  BudgetRoute: typeof BudgetRoute
+  ExpensesRoute: typeof ExpensesRoute
+  GoalsRoute: typeof GoalsRoute
+  IncomeRoute: typeof IncomeRoute
+  ReportsRoute: typeof ReportsRoute
+  SavingsRoute: typeof SavingsRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/savings': {
+      id: '/savings'
+      path: '/savings'
+      fullPath: '/savings'
+      preLoaderRoute: typeof SavingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/income': {
+      id: '/income'
+      path: '/income'
+      fullPath: '/income'
+      preLoaderRoute: typeof IncomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/goals': {
+      id: '/goals'
+      path: '/goals'
+      fullPath: '/goals'
+      preLoaderRoute: typeof GoalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expenses': {
+      id: '/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof ExpensesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/budget': {
+      id: '/budget'
+      path: '/budget'
+      fullPath: '/budget'
+      preLoaderRoute: typeof BudgetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/all-months': {
+      id: '/all-months'
+      path: '/all-months'
+      fullPath: '/all-months'
+      preLoaderRoute: typeof AllMonthsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +217,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AllMonthsRoute: AllMonthsRoute,
+  BudgetRoute: BudgetRoute,
+  ExpensesRoute: ExpensesRoute,
+  GoalsRoute: GoalsRoute,
+  IncomeRoute: IncomeRoute,
+  ReportsRoute: ReportsRoute,
+  SavingsRoute: SavingsRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
