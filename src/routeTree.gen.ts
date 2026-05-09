@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SavingsRouteImport } from './routes/savings'
 import { Route as IncomeRouteImport } from './routes/income'
 import { Route as ExpensesRouteImport } from './routes/expenses'
 import { Route as BudgetRouteImport } from './routes/budget'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SavingsRoute = SavingsRouteImport.update({
+  id: '/savings',
+  path: '/savings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IncomeRoute = IncomeRouteImport.update({
   id: '/income',
   path: '/income',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/budget': typeof BudgetRoute
   '/expenses': typeof ExpensesRoute
   '/income': typeof IncomeRoute
+  '/savings': typeof SavingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/budget': typeof BudgetRoute
   '/expenses': typeof ExpensesRoute
   '/income': typeof IncomeRoute
+  '/savings': typeof SavingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/budget': typeof BudgetRoute
   '/expenses': typeof ExpensesRoute
   '/income': typeof IncomeRoute
+  '/savings': typeof SavingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/budget' | '/expenses' | '/income'
+  fullPaths: '/' | '/budget' | '/expenses' | '/income' | '/savings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/budget' | '/expenses' | '/income'
-  id: '__root__' | '/' | '/budget' | '/expenses' | '/income'
+  to: '/' | '/budget' | '/expenses' | '/income' | '/savings'
+  id: '__root__' | '/' | '/budget' | '/expenses' | '/income' | '/savings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +76,18 @@ export interface RootRouteChildren {
   BudgetRoute: typeof BudgetRoute
   ExpensesRoute: typeof ExpensesRoute
   IncomeRoute: typeof IncomeRoute
+  SavingsRoute: typeof SavingsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/savings': {
+      id: '/savings'
+      path: '/savings'
+      fullPath: '/savings'
+      preLoaderRoute: typeof SavingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/income': {
       id: '/income'
       path: '/income'
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   BudgetRoute: BudgetRoute,
   ExpensesRoute: ExpensesRoute,
   IncomeRoute: IncomeRoute,
+  SavingsRoute: SavingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
