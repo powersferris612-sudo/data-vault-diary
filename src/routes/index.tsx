@@ -111,7 +111,7 @@ function Dashboard() {
                 <Tooltip
                   cursor={{ fill: "color-mix(in oklab, var(--color-muted) 50%, transparent)" }}
                   contentStyle={{ background: "var(--color-surface-2)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }}
-                  formatter={(v: number) => fmtMoneyExact(v)}
+                  formatter={(v: any) => fmtMoneyExact(Number(v))}
                 />
                 <Bar dataKey="planned" fill="var(--color-accent)" radius={[6, 6, 0, 0]} name="Planned" />
                 <Bar dataKey="actual" fill="var(--color-primary)" radius={[6, 6, 0, 0]} name="Actual" />
@@ -134,7 +134,7 @@ function Dashboard() {
                   <Pie data={donut} dataKey="value" innerRadius={55} outerRadius={90} paddingAngle={2}>
                     {donut.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
                   </Pie>
-                  <Tooltip contentStyle={{ background: "var(--color-surface-2)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} formatter={(v: number) => fmtMoneyExact(v)} />
+                  <Tooltip contentStyle={{ background: "var(--color-surface-2)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} formatter={(v: any) => fmtMoneyExact(Number(v))} />
                   <Legend verticalAlign="bottom" iconSize={8} wrapperStyle={{ fontSize: 11 }} />
                 </PieChart>
               </ResponsiveContainer>
@@ -209,7 +209,7 @@ function YearGlance({ year }: { year: number }) {
             <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
             <XAxis dataKey="name" stroke="var(--color-muted-foreground)" fontSize={11} axisLine={false} tickLine={false} />
             <YAxis stroke="var(--color-muted-foreground)" fontSize={11} axisLine={false} tickLine={false} tickFormatter={(v) => fmtMoney(v)} />
-            <Tooltip contentStyle={{ background: "var(--color-surface-2)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} formatter={(v: number) => fmtMoneyExact(v)} />
+            <Tooltip contentStyle={{ background: "var(--color-surface-2)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} formatter={(v: any) => fmtMoneyExact(Number(v))} />
             <Bar dataKey="saved" fill="var(--color-primary)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
