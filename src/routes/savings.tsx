@@ -33,7 +33,7 @@ function SavingsPage() {
   const monthlyContrib = KEYS.reduce((s, k) => s + (draft[k].contributed || 0), 0);
   const projectedValue = KEYS.reduce((s, k) => s + (draft[k].totalToDate * (1 + (draft[k].returnRate || 0) / 100)), 0);
 
-  const donut = KEYS.map(k => ({ name: BUDGET_LABELS[k as any], value: draft[k].totalToDate || 0 }));
+  const donut = KEYS.map(k => ({ name: BUDGET_LABELS[k as keyof typeof BUDGET_LABELS], value: draft[k].totalToDate || 0 }));
 
   const emergencyTarget = 390000;
   const efPct = Math.min(100, Math.round((draft.emergencyFund.totalToDate / emergencyTarget) * 100));
@@ -53,7 +53,7 @@ function SavingsPage() {
       <div className="grid lg:grid-cols-3 gap-4 mb-6">
         <div className="lg:col-span-2 grid sm:grid-cols-2 gap-4">
           {KEYS.map((k, i) => (
-            <Section key={k} title={BUDGET_LABELS[k as any]} action={<span className="chip" style={{ color: COLORS[i] }}>● bucket</span>}>
+            <Section key={k} title={BUDGET_LABELS[k as keyof typeof BUDGET_LABELS]} action={<span className="chip" style={{ color: COLORS[i] }}>● bucket</span>}>
               <div className="space-y-3">
                 <div>
                   <label className="text-xs text-muted-foreground">This month contribution</label>
